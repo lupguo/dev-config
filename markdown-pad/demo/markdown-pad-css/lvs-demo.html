@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)file:///C:/Users/Administrator/AppData/Local/Temp/MarkdownPadPreview.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LVS</title>
+
+<style type="text/css">
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+    font-family: "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans-serif";
+    font-size: 14px;
+    line-height: 1.6;
+    color: #212121;
+    background-color: #fff;
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+body>*:first-child {
+    margin-top: 0 !important;
+}
+
+body>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+    margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0 10px;
+    padding: 0;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+    font-size: inherit;
+}
+
+h1 {
+    font-size: 28px;
+    color: #000;
+}
+
+h2 {
+    font-size: 24px;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 14px;
+    color: #9c9595;
+}
+
+h6 {
+    color: #9c9595;
+    font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+    margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+    color: #4183C4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+    padding-left: 30px;
+}
+
+ul li > :first-child,
+ol li > :first-child,
+ul li ul:first-of-type,
+ol li ol:first-of-type,
+ul li ol:first-of-type,
+ol li ul:first-of-type {
+    margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+    margin-bottom: 0;
+}
+
+dl {
+    padding: 0;
+}
+
+dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+    padding: 0;
+}
+
+dl dt>:first-child {
+    margin-top: 0px;
+}
+
+dl dt>:last-child {
+    margin-bottom: 0px;
+}
+
+dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px;
+}
+
+dl dd>:first-child {
+    margin-top: 0px;
+}
+
+dl dd>:last-child {
+    margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+    color: #bb460b;
+    font-size: 12px;
+    font-family: Microsoft YaHei UI;
+    /* font-style: italic;*/
+    font-weight: bold;
+}
+/* CODE
+=====================*/
+code, tt {
+    margin: 0 0px;
+    padding: 3px 3px;
+    white-space: nowrap;
+    border: none;
+    background-color: rgba(222, 215, 217, 0.7);
+    border-radius: 3px;
+}
+
+pre>code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    background: transparent;
+}
+
+pre {
+    background-color: #f8f8f8;
+    border: 1px dashed #ccc;
+    font-size: 13px;
+    line-height: 20px;
+    overflow: auto;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+pre code, pre tt {
+    background-color: transparent;
+    border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+    border-left: 4px solid #D6D6D6;
+    padding: 5px 10px;
+    color: #555;
+    background-color: #F0F1F5
+}
+
+blockquote>:first-child {
+    margin-top: 0px;
+}
+
+blockquote>:last-child {
+    margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+    clear: both;
+    margin: 15px 0;
+    height: 0px;
+    overflow: hidden;
+    border: none;
+    background: transparent;
+    border-bottom: 4px solid #ddd;
+    padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table {
+    border-right: 1px dashed #9a8585;
+    border-bottom: 1px dashed;
+}
+
+table th {
+    font-weight: bold;
+}
+
+table th, table td {
+    border-top: 1px dashed #9a8585;
+    border-left: 1px dashed;
+    padding: 6px 13px;
+}
+
+table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+    max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+<!--<base href="file:\\\D:\notes\LVS\">--><base href=".">
+</head>
+<body>
+<h1 id="linux-">Linux集群架构</h1>
+<blockquote>
+<p>各种诉求要求服务器端去做到可伸缩、高可用、易管理</p>
+</blockquote>
+<h2 id="-">概述</h2>
+<h3 id="smp-">smp对比集群</h3>
+<ul>
+<li><p>SMP（Symmetric Multi-processor对称多处理）</p>
+<ul>
+<li>硬件升级繁琐，升级造成服务中断</li><li>越高端越贵</li><li>单点问题</li><li>单台硬件存在顶板性能问题</li></ul>
+</li><li><p>通过高性能网络或局域网互联的服务器集群：</p>
+<ul>
+<li>性能：可以通过组服务器扩容分而治之，可以很容易提升</li><li>性价比：基于廉价的服务器集群，性价比较高</li><li>可伸缩：节点可以很容易扩展到多台，性能很容易超过单台</li><li>高可用：在硬件和软件上都有冗余，通过检测软硬件的故障，将故障屏蔽，由存活结点提供服务，可实现高可用性</li></ul>
+</li></ul>
+<h3 id="-">集群挑战</h3>
+<ul>
+<li>透明性：需要对客户端的透明，切入、切出服务器不会中断服务</li><li>性能：需要容易扩展，消除系统瓶颈</li><li>高可用：需要在服务出现故障时候，应该自动迁移</li><li>可管理：需要集群系统就像管理单个镜像一样，软硬件要做到即插即用！</li><li>可编程：基于集群，需要容易开发应用程序</li></ul>
+<h3 id="lvs-load-balancer-">LVS - Load Balancer调度</h3>
+<blockquote>
+<p>负载均衡调度，能将网络请求无缝的调度到真实的服务器上，从而使得集群对客户端是透明的；当节点故障或者扩容节点时候，负载均衡调度器可以正确的重置集群系统，达到高可用性；负载均衡调度是在Linux内核完成，我们称之为LVS-Linux虚拟服务器（Linux Virtual Server）</p>
+</blockquote>
+<p>Linux Virtual Server项目的目标:</p>
+<ul>
+<li>可伸缩性（Scalability）、</li><li>可靠性（Reliability）</li><li>可管理性（Manageability）。</li></ul>
+<h3 id="lvs-">LVS的两种调度方式</h3>
+<ol>
+<li>基于IP层(3种)<ol>
+<li>网络层调度：IP虚拟服务器软件IPVS（IP负载均衡技术是效率最高的）</li><li>应用层调度：基于内容请求分发的内核Layer-7交换机KTCPVS</li><li>集群管理软件</li></ol>
+</li><li>基于内容请求分发</li></ol>
+<h4 id="-ipvs">负载均衡之 IPVS</h4>
+<blockquote>
+<p>IPVS是在Linux内核内的负载均衡，也叫Layer-4交换机；</p>
+</blockquote>
+<p>IPVS概述</p>
+<ol>
+<li>IP Virtual Server,IP的虚拟服务器</li><li>IPVS是LVS的关键，LVS需要提供同样的服务</li><li>IPVS是在第四层（TCP传输层）实现</li><li>IPVS是基于TCP的SYN连接到来，IPVS选中一台服务器，后续IPVS通过查发TCP/IP数据包来保证后继报文转发到相同的服务器</li><li>IPVS无法基于内容分发，基于内容分发的可以用相关的反向代理来实现（Nginx、Varnish、Squid、ATS等）</li><li>关连进程:<code>ipvsadm</code></li></ol>
+<h4 id="-">三种负载均衡的技术说明</h4>
+<ol>
+<li>IPVS以负载均衡的角色运行在服务器集群前端，它可以直接请求基于TCP/UDP服务真正的服务器，使得真实的服务在一个虚拟的IP上面表现为一个虚拟的服务。</li><li>在调度器的实现技术中，IP负载均衡技术是效率最高的。</li><li>IP负载均衡技术，IPVS软件实现了这三种IP负载均衡技术：<ul>
+<li>通过NAT实现（VS/NAT技术 ~ Virtual Server via Network Address Translation），相关产品：<ul>
+<li>Cisco的LocalDirector</li><li>F5的Big/IP</li><li>Alteon的ACEDirector。</li></ul>
+</li><li>通过IP隧道实现虚拟服务器的方法VS/TUN （Virtual Server via IP Tunneling）</li><li>通过直接路由实现虚拟服务器的方法VS/DR（Virtual Server via Direct Routing）</li></ul>
+</li></ol>
+<p>三种IP负载均衡技术说明：</p>
+<pre><code>[VS/NAT]: 
+    数据包请求报文&lt;=&gt;调度器改写目标地址&lt;=&gt;后端真实服务器
+    数据包响应报文&lt;=&gt;调度器改写目标地址&lt;=&gt;前端客户机
+
+    弊端：调度器成为性能瓶颈
+[VS/TUN]:10倍性能提升
+    数据请求报文&lt;=&gt;调度器通过IP隧道&lt;=&gt;真实服务器
+    数据响应报文&lt;=&gt;客户
+[VS/DR]:无IP隧道开销，极大提升集群的伸缩性；要求调度器与真实服务器要求有一块网卡在同一物理段；
+    数据请求报文&lt;=&gt;调度器改写报文MAC地址&lt;=&gt;真实服务器
+    数据响应报文&lt;=&gt;客户
+</code></pre><h4 id="-">八种调度算法</h4>
+<p>针对不同网络服务需求和服务器配置，有不同的调度算法(8种策略)：</p>
+<ol>
+<li>普通轮询(RR)(round robin)：求按顺序轮流分配到集群中的真实服务器上，均衡对待，不管服务器实际连接和系统负载；</li><li>加权轮询(WRR)(weighted round robin)：调度器可以基于真实服务器的负载，动态的调整权重；</li><li>最少连接（LC）：调度器将网络请求，调度到最少的服务器上；</li><li>加权最少连接(WLC)：具有较高权值的服务器将承受较大比例的活动连接负载；调度器可以自动询问真实服务器负载，并动态调整其权值；</li><li>基于局部性的最少连接(LBLC)：主要是给cache集群系统来用的，基于IP进行负载均衡，该算法根据请求目标IP地址找出最近使用的服务器，若改服务器可用而且还未超载，则将请求发送到该服务器；否则基于最少连接选择真实服务器；</li><li>带复制的基于局部性最少连接：主要用于Cache集群系统；</li><li>目标地址hash:基于请求目标地址IP进行散列，若服务器是可用且未超载，则将请求发送至该服务器</li><li>源地址hash：基于请求的源地址IP进行散列。</li></ol>
+<h4 id="-ip-">基于IP负载调度技术的流程：</h4>
+<ol>
+<li>TCP连接=&gt;SYN=&gt;调度器=&gt;调度算法=&gt;选择一台真实后端服务器X=&gt;报文转发</li><li>TCP后续发送报文=&gt;调度器查发报文的IP和TCP报文的头地址=&gt;保证后继报文转发到X服务器</li></ol>
+<p>从该流程看出，IPVS无法对请求内容进行筛选并选择服务器，因此后端组服务器中每台服务器都应该提供相同的服务，不管发送到哪台，返回结果都应该是一样。<br>但针对不同的后端服务器，可能有不同的内容服务，因此这里就需要基于内容进行调度（Content-Based Scheduling）。这一层虽然有KTCPVS(Kernel TCP Virtual Server),但它还不很成熟，在其调度算法和各种协议的功能支持等方面，有大量的工作需要做。这块大都都采用其他产品来替代（<code>HAproxy</code>、<code>Nginx</code>等等）</p>
+<h4 id="-">性能</h4>
+<p>LVS服务器集群系统具有良好的伸缩性，可支持几百万个并发连接。<br>配置100M网卡，采用VS/TUN或VS/DR调度技术，集群系统的吞吐量可高达1Gbits/s；<br>如配置千兆网卡，则系统的最大吞吐量可接近10Gbits/s。</p>
+<h4 id="-">三层架构</h4>
+<ul>
+<li>负载均衡层（IPVS、KTCPVS）</li><li>服务器集群（和机器数成线性增长）</li><li>共享存储（数据库、NFS/CIFS/GFS/Moosefs...）~支持分片存储</li></ul>
+<blockquote>
+<p>三层网络连接通常都是基于高速网络，如100M和千兆网卡，防止网络层的瓶颈</p>
+</blockquote>
+<p><img src="./lvs-demo_files/show" alt=""></p>
+
+
+
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
+</body></html>
