@@ -7,7 +7,8 @@ Something maybe not work, you must detect carefully.
 
 ## Content List
 - [PS1](#ps1)
-- [GIT(git-completion、bash-git-prompt)](#git)
+- [Git(git-completion、bash-git-prompt)](#git)
+- Nginx
 
 ### PS1
 ```
