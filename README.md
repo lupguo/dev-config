@@ -11,7 +11,7 @@ Something maybe not work, you must detect carefully.
 
 ### PS1
 ```
-wget https://raw.githubusercontent.com/tkstorm/ldenv/master/ps1.sh -O /etc/profile.d/ps1.sh
+sudo wget https://raw.githubusercontent.com/tkstorm/ldenv/master/ps1.sh -O /etc/profile.d/ps1.sh
 ```
 
 ### git
