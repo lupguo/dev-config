@@ -14,7 +14,7 @@ Something maybe not work, you must detect carefully.
 sudo wget https://raw.githubusercontent.com/tkstorm/ldenv/master/ps1.sh -O /etc/profile.d/ps1.sh
 ```
 
-### git
+### GIT 
 - git-completion
 ```
 sudo cp /usr/local/src/git-2.18.0/contrib/completion/git-completion.bash /etc/profile.d/git-completion.sh
