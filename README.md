@@ -23,7 +23,8 @@ sudo cp /usr/local/src/git-2.18.0/contrib/completion/git-completion.bash /etc/pr
 - bash-git-prompt
 ```
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
-#Add to the ~/.bashrc:
+
+# Add to the ~/.bashrc:
 GIT_PROMPT_ONLY_IN_REPO=1
 source ~/.bash-git-prompt/gitprompt.sh
 ```
