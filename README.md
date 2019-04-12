@@ -9,6 +9,8 @@ Something maybe not work, you must detect carefully.
 - [PS1](#ps1)
 - [Git(git-completion、bash-git-prompt)](#git)
 - Nginx
+- Dockerfile
+    - [Append Bash Alias](https://github.com/tkstorm/ldenv/tree/master/docker) 
 
 ### PS1
 ```
@@ -35,5 +37,10 @@ source ~/.bash-git-prompt/gitprompt.sh
 
 ### Container Alias
 ```
+// wget alias.sh
 wget https://raw.githubusercontent.com/tkstorm/ldenv/master/docker/alias.sh
+// cp to /etc/profile.d/ in Dockerfile
+COPY ./alias.sh /etc/profile.d/
+// using a login shell
+docker exec -it database_mysql_1 /bin/bash -l
 ```
