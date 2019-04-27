@@ -11,6 +11,7 @@ Something maybe not work, you must detect carefully.
 - Nginx
 - Dockerfile
     - [Append Bash Alias](https://github.com/tkstorm/ldenv/tree/master/docker) 
+- HTTPS
 
 ### PS1
 ```
@@ -44,3 +45,8 @@ COPY ./alias.sh /etc/profile.d/
 // using a login shell
 docker exec -it database_mysql_1 /bin/bash -l
 ```
+
+## HTTPS
+Something about CA openssl.cnf config file.
+
+more info see : https://tkstorm.com/openssl-usages
