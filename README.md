@@ -1,9 +1,5 @@
-# ldenv
-Linux development environment
-
-This Repository is used for some linux/unix or macOS to be better start.
-
-Something maybe not work, you must detect carefully.
+# dev-config
+针对开发环境中的一些配置，主要是针对Linux环境相关！
 
 ## Content List
 - [PS1](#ps1)
@@ -12,10 +8,12 @@ Something maybe not work, you must detect carefully.
 - Dockerfile
     - [Append Bash Alias](https://github.com/tkstorm/ldenv/tree/master/docker) 
 - HTTPS
+- proxy-source
+- Bash Tips: https://tkstorm.com/posts-list/os/linux/bashshell-tips/
 
 ### PS1
 ```
-sudo wget https://raw.githubusercontent.com/tkstorm/ldenv/master/ps1.sh -O /etc/profile.d/ps1.sh
+sudo wget https://raw.githubusercontent.com/tkstorm/dev-config/master/ps1.sh -O /etc/profile.d/ps1.sh
 ```
 
 ### GIT 
@@ -39,7 +37,7 @@ source ~/.bash-git-prompt/gitprompt.sh
 ### Container Alias
 ```
 // wget alias.sh
-wget https://raw.githubusercontent.com/tkstorm/ldenv/master/docker/alias.sh
+wget https://raw.githubusercontent.com/tkstorm/dev-config/master/docker/alias.sh
 // cp to /etc/profile.d/ in Dockerfile
 COPY ./alias.sh /etc/profile.d/
 // using a login shell

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 export PS1='\n\
 [\[\e[32m\]\u\[\e[0m\]\
 @\
